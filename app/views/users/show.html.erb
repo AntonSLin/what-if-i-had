@@ -1,0 +1,18 @@
+<%= @user.email %>
+
+<% @user.portfolios.all.each do |portfolio| %>
+  <p><%= portfolio.name %></p>
+  <%= link_to "Delete", portfolio_path(portfolio), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= simple_form_for ([portfolio, @stock]) do |f| %>
+    <%= f.button :submit, "Add a stock" %>
+  <% end %>
+<p><%= portfolio.stocks.each { |stock| stock.id  } %></p>
+<% end %>
+
+<%= simple_form_for (@portfolio) do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit, "Build a new portfolio" %>
+<% end %>
+
+
+
