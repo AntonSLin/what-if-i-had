@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# call the api for the all data
+# loop over it to extracvt the tickers and stick each of them in a separate stock instance.
+# So you'll have as many stcok instances as there are tickers on the api
+
+#ApiCall::GetData.all_data.stock.each do |name|
+
+ # Stock.create!(tickers: name )
+#end
+# parse it with JSON.parse
+

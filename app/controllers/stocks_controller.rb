@@ -20,6 +20,11 @@ class StocksController < ApplicationController
   def show
   end
 
+  # def add_new_stock
+  #   symbol = params[:symbol]
+  #   ApiCall::GetData.stock_details(symbol, start_date, end_date, amount)
+  # end
+
   private
 
   def stock_params
