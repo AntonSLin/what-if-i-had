@@ -8,7 +8,7 @@ class StocksController < ApplicationController
   def create
     @user = current_user
     @portfolio = Portfolio.find(params[:portfolio_id])
-    @stock = Stock.new
+    @stock = Stock.new(stock_params)
     @stock.portfolio = @portfolio
      if @stock.save
       redirect_to user_path(current_user)
@@ -20,10 +20,15 @@ class StocksController < ApplicationController
   def show
   end
 
+  def destroy
+    @stock.destroy
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def stock_params
-    params.require(:stock)
+    params.require(:stock).permit(:symbol, :amount, :start_date, :end_date)
   end
 
   def find_stock
