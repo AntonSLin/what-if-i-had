@@ -9,7 +9,7 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user = current_user
      if @portfolio.save
-      redirect_to portfolio_path(@portfolio)
+      redirect_to user_path(current_user)
     else
       render :new
     end
