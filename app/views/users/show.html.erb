@@ -1,9 +1,9 @@
 <%= @user.email %>
 
-<% @user.portfolios.all.each do |portfolio| %>
+<% @user.portfolios.each do |portfolio| %>
   <p><%= portfolio.name %></p>
   <%= link_to "Delete", portfolio_path(portfolio), method: :delete, data: { confirm: "Are you sure?" } %>
-  <%= simple_form_for ([portfolio, @stock]) do |f| %>
+  <%= simple_form_for [portfolio, @stock] do |f| %>
     <%= f.input :symbol %>
     <%= f.input :amount %>
     <%= f.input :start_date %>
@@ -12,6 +12,7 @@
   <% end %>
   <% portfolio.stocks.each do |stock| %>
     <p><%= [stock.amount, stock.symbol] %></p>
+    <p><%= @stocks_with_adjusted[stock.symbol] %></p>
     <%= link_to "Delete Stock", stock_path(stock), method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>
 <% end %>
