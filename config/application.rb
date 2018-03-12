@@ -13,6 +13,7 @@ module WhatIfIHad
       generate.helper false
       generate.test_framework  :test_unit, fixture: false
     end
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

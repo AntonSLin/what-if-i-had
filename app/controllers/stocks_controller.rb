@@ -1,4 +1,6 @@
+
 class StocksController < ApplicationController
+  include ApiCall
   before_action :find_stock, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -10,6 +12,10 @@ class StocksController < ApplicationController
     @portfolio = Portfolio.find(params[:portfolio_id])
     @stock = Stock.new(stock_params)
     @stock.portfolio = @portfolio
+    # ApiCall::GetData.stock_details(@stock.symbol, @stock.start_date, @stock.end_date, @stock.amount)
+    url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=#{@stock.symbol}&apikey=#{ENV['ALPHA_API']}"
+    url_json = open(url).read
+    @url_hash = JSON.parse(url_json)
      if @stock.save
       redirect_to user_path(current_user)
     else
